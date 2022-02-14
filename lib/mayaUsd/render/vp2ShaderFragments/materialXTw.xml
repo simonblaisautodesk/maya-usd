@@ -15,7 +15,13 @@
                 <![CDATA[
 float3 imaterialXTw(float3 Nw)
 {
-    return cross(Nw, float3(0.0, 0.0, 1.0));
+    // TODO: This is completely arbitrary. Requires at least a UV channel to compute anything better
+    //       at the fragment or geometry shader level. USD will not provide tangent information.
+    float3 tw = cross(Nw, float3(0.0, 0.0, 1.0));
+    if (length(tw) < 1e-5) {
+        tw = cross(Nw, float3(1.0, 0.0, 0.0));
+    }
+    return tw;
 }
                 ]]>
             </vertex_source>
@@ -34,7 +40,13 @@ float3 materialXTw(float3 iTw)
                 <![CDATA[
 vec3 imaterialXTw(vec3 Nw)
 {
-    return cross(Nw, vec3(0.0, 0.0, 1.0));
+    // TODO: This is completely arbitrary. Requires at least a UV channel to compute anything better
+    //       at the fragment or geometry shader level. USD will not provide tangent information.
+    vec3 tw = cross(Nw, vec3(0.0, 0.0, 1.0));
+    if (length(tw) < 1e-5) {
+        tw = cross(Nw, vec3(1.0, 0.0, 0.0));
+    }
+    return tw;
 }
                 ]]>
             </vertex_source>
@@ -53,7 +65,13 @@ vec3 materialXTw(vec3 iTw)
                 <![CDATA[
 float3 imaterialXTw(float3 Nw)
 {
-    return cross(Nw, float3(0.0, 0.0, 1.0));
+    // TODO: This is completely arbitrary. Requires at least a UV channel to compute anything better
+    //       at the fragment or geometry shader level. USD will not provide tangent information.
+    float3 tw = cross(Nw, float3(0.0, 0.0, 1.0));
+    if (length(tw) < 1e-5) {
+        tw = cross(Nw, float3(1.0, 0.0, 0.0));
+    }
+    return tw;
 }
                 ]]>
             </vertex_source>

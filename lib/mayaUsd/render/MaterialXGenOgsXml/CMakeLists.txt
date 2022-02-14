@@ -24,6 +24,10 @@ list(APPEND LIGHT_IMPLEMENTATIONS
     libraries/mx_lighting_maya_v2.glsl
 )
 
+list(APPEND NODE_DECLARATIONS
+    libraries/maya_surfaces.mtlx
+)
+
 # -----------------------------------------------------------------------------
 # promote headers
 # -----------------------------------------------------------------------------
@@ -34,4 +38,8 @@ mayaUsd_promoteHeaderList(HEADERS ${HEADERS} SUBDIR render/MaterialXGenOgsXml)
 # -----------------------------------------------------------------------------
 install(FILES ${LIGHT_IMPLEMENTATIONS}
     DESTINATION ${CMAKE_INSTALL_PREFIX}/libraries/pbrlib/genglsl/ogsxml
+)
+
+install(FILES ${NODE_DECLARATIONS}
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/libraries/adsk/maya
 )

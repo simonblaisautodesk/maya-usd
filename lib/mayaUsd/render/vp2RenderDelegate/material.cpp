@@ -1927,6 +1927,20 @@ MHWRender::MShaderInstance* HdVP2Material::_CreateMaterialXShaderInstance(
             }
         }
 
+        // Fixup inputs that were renamed because they conflicted with reserved keywords:
+        for (const auto& namePair : ogsFragment.getPathInputMap()) {
+            std::string path = namePair.first;
+            std::string input = namePair.second;
+            // Renaming adds digits at the end, so only compare the backs.
+            if (path.back() != input.back()) {
+                MString uniqueName(input.c_str());
+                while (!input.empty() && path.back() != input.back()) {
+                    input.pop_back();
+                }
+                shaderInstance->renameParameter(uniqueName, input.c_str());
+            }
+        }
+
         // Add automatic tangent generation:
         shaderInstance->addInputFragment("materialXTw", "Tw", "Tw");
 
