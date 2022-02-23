@@ -90,7 +90,7 @@ MtohInitializeRenderPlugins()
             store.first.emplace_back(
                 renderer,
                 TfToken(TfStringPrintf("%s%s", MTOH_RENDER_OVERRIDE_PREFIX, renderer.GetText())),
-                TfToken(TfStringPrintf("%s (Hydra)", pluginDesc.displayName.c_str())));
+                TfToken(TfStringPrintf("Mtoh Experimental and %s (Hydra)", pluginDesc.displayName.c_str())));
             MtohRenderGlobals::BuildOptionsMenu(store.first.back(), rendererSettingDescriptors);
         }
 
